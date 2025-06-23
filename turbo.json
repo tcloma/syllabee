@@ -1,33 +1,22 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "tasks": {
-        "dev": {
-            "cache": false,
-            "persistent": true,
-            "dependsOn": [
-                "^dev"
-            ],
-            "outputs": []
-        },
-        "build": {
-            "dependsOn": [
-                "^build"
-            ],
-            "outputs": [
-                "dist/**",
-                "build/**"
-            ]
-        },
-        "lint": {
-            "outputs": []
-        },
-        "test": {
-            "outputs": []
-        }
-    },
-    "globalDependencies": [
-        ".env",
-        "bunfig.toml",
-        "tsconfig.json"
-    ]
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"dev": {
+			"cache": false,
+			"persistent": true,
+			"dependsOn": ["^dev"],
+			"outputs": []
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", "build/**"]
+		},
+		"lint": {
+			"outputs": []
+		},
+		"test": {
+			"outputs": []
+		}
+	},
+	"globalDependencies": [".env", "bunfig.toml", "tsconfig.json"]
 }

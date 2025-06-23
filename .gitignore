@@ -43,6 +43,9 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # Turborepo
 .turbo
 
-#Vite
+# Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# VsCode
+.vscode
