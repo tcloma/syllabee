@@ -6,6 +6,12 @@ notes
 out
 dist
 *.tgz
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
 
 # code coverage
 coverage
@@ -36,3 +42,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Turborepo
 .turbo
+
+#Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
