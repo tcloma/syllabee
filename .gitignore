@@ -10,8 +10,8 @@ dist
 .vercel
 .netlify
 .wrangler
-/.svelte-kit
-/build
+/apps/web/.svelte-kit
+/apps/web/build
 
 # code coverage
 coverage
