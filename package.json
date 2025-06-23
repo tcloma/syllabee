@@ -1,14 +1,22 @@
 {
   "name": "syllabi",
-  "module": "index.ts",
   "type": "module",
   "private": true,
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "turbo run format"
+  },
+  "packageManager": "bun@1.2.0",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "turbo": "^2.5.4"
   },
   "peerDependencies": {
     "typescript": "^5"

@@ -1,0 +1,32 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+        "dev": {
+            "cache": false,
+            "dependsOn": [
+                "^dev"
+            ],
+            "outputs": []
+        },
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "dist/**",
+                "build/**"
+            ]
+        },
+        "lint": {
+            "outputs": []
+        },
+        "test": {
+            "outputs": []
+        }
+    },
+    "globalDependencies": [
+        ".env",
+        "bunfig.toml",
+        "tsconfig.json"
+    ]
+}
