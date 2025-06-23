@@ -1,0 +1,12 @@
+Core concepts
+- Frontend Development
+  - Web-based dashboard
+  - Chrome extensions
+- Backend Development
+  - API
+  - Authentication
+- LLM Integration
+  - OpenAI API
+  - Context through Vector DBs
+- Web Scraping
+- Monorepo
