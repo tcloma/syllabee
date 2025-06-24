@@ -1,5 +1,6 @@
 import { talk } from "@syllaby/core";
 import { Hono } from "hono";
+import mammoth from "mammoth";
 import PDF from "pdf-parse";
 
 const app = new Hono();
@@ -32,12 +33,37 @@ app.post("/upload", async (c) => {
 	console.log("File data received:", file);
 
 	const buffer = Buffer.from(await file.arrayBuffer());
-	console.log("File buffer size:", buffer);
 
-	const data = await PDF(buffer);
-	console.log("PDF text extracted:", data);
-
-	return c.json({ message: "File received successfully" });
+	switch (true) {
+		case file.type.includes("pdf"): {
+			const data = await PDF(buffer);
+			return c.json({
+				text: data.text,
+			});
+		}
+		case file.type.includes("word"): {
+			const data = await mammoth.extractRawText({ buffer });
+			return c.json({
+				text: data.value,
+			});
+		}
+		case file.type.includes("text/plain"):
+			return c.json({
+				text: await file.text(),
+			});
+		case file.type.includes("text/markdown"):
+			return c.json({
+				text: await file.text(),
+			});
+		default:
+			return c.json(
+				{
+					error: `Unsupported file type "${file.type}"`,
+					supportedTypes: ["pdf", "docx", "txt", "md"],
+				},
+				400,
+			);
+	}
 });
 
 export default Bun.serve({
