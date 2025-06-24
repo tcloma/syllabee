@@ -15,7 +15,7 @@
   - Bun, Hono, Turso, Drizzle
   - SvelteKit, TailwindCSS, shadcn/ui
   - pdf-parse, mammoth
-- [ ] Optional: Add GitHub repo + CI (e.g., GitHub Actions)
+- [x] Optional: Add GitHub repo + CI (e.g., GitHub Actions)
 
 ---
 
