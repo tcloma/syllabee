@@ -2,10 +2,8 @@
 	"name": "api",
 	"module": "index.ts",
 	"type": "module",
-	"private": true,
 	"devDependencies": {
-		"@types/bun": "latest",
-		"drizzle-kit": "^0.31.2"
+		"@types/bun": "latest"
 	},
 	"scripts": {
 		"dev": "bun run --watch index.ts"
@@ -14,8 +12,8 @@
 		"typescript": "^5"
 	},
 	"dependencies": {
-		"@libsql/client": "^0.15.9",
-		"drizzle-orm": "^0.44.2",
-		"hono": "^4.8.2"
+		"hono": "^4.8.2",
+		"@syllaby/db": "workspace:*",
+		"@sylalby/core": "workspace:*"
 	}
 }

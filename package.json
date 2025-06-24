@@ -1,5 +1,5 @@
 {
-	"name": "syllabi",
+	"name": "@syllabi",
 	"type": "module",
 	"private": true,
 	"workspaces": [
