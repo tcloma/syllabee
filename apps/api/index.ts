@@ -17,4 +17,8 @@ app.get("/talk", async (c) => {
 	}
 });
 
-export default app;
+export default Bun.serve({
+	port: 5151,
+	fetch: app.fetch,
+	idleTimeout: 60,
+});
