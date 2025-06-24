@@ -32,9 +32,9 @@ app.post("/upload", async (c) => {
 	console.log("File data received:", file);
 
 	const buffer = Buffer.from(await file.arrayBuffer());
-	console.log("File buffer size:", buffer	);
+	console.log("File buffer size:", buffer);
 
-	const data = await PDF(buffer)
+	const data = await PDF(buffer);
 	console.log("PDF text extracted:", data);
 
 	return c.json({ message: "File received successfully" });
