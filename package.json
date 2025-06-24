@@ -1,7 +1,6 @@
 {
 	"name": "@syllabi",
 	"type": "module",
-	"private": true,
 	"workspaces": [
 		"packages/*",
 		"apps/*"
