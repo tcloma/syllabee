@@ -21,10 +21,10 @@
 
 ## 🔌 Phase 1: Core Backend (Day 3–6)
 
-- [ ] Create `/upload` API:
-  - [ ] Accept PDF/DOCX
-  - [ ] Convert to text using `pdf-parse`, `mammoth`
-  - [ ] Chunk by page/section
+- [x] Create `/upload` API:
+  - [x] Accept PDF/DOCX
+  - [x] Convert to text using `pdf-parse`, `mammoth`
+  - [x] Chunk by page/section
 - [ ] Generate embeddings:
   - [ ] Use `text-embedding-3-small` via OpenAI
   - [ ] Store vectors + metadata in Turso

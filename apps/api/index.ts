@@ -1,7 +1,6 @@
 import { talk } from "@syllaby/core";
 import { Hono } from "hono";
-import mammoth from "mammoth";
-import PDF from "pdf-parse";
+import { chunkText, parseText } from "./textUtils";
 
 const app = new Hono();
 
@@ -20,50 +19,34 @@ app.get("/talk", async (c) => {
 });
 
 app.post("/upload", async (c) => {
-	const formData = await c.req.parseBody();
-	if (!formData) {
-		return c.json({ error: "File upload is required" }, 400);
-	}
-
-	if (!formData.file || !(formData.file instanceof File)) {
-		return c.json({ error: "Invalid file upload" }, 400);
+	let formData: { [x: string]: string | File };
+	try {
+		formData = await c.req.parseBody();
+	} catch {
+		return c.json(
+			{
+				error: "Invalid Request",
+			},
+			400,
+		);
 	}
 
 	const file = formData.file as File;
 	console.log("File data received:", file);
 
-	const buffer = Buffer.from(await file.arrayBuffer());
-
-	switch (true) {
-		case file.type.includes("pdf"): {
-			const data = await PDF(buffer);
-			return c.json({
-				text: data.text,
-			});
-		}
-		case file.type.includes("word"): {
-			const data = await mammoth.extractRawText({ buffer });
-			return c.json({
-				text: data.value,
-			});
-		}
-		case file.type.includes("text/plain"):
-			return c.json({
-				text: await file.text(),
-			});
-		case file.type.includes("text/markdown"):
-			return c.json({
-				text: await file.text(),
-			});
-		default:
-			return c.json(
-				{
-					error: `Unsupported file type "${file.type}"`,
-					supportedTypes: ["pdf", "docx", "txt", "md"],
-				},
-				400,
-			);
+	const data = await parseText(file);
+	if (data === "") {
+		return c.json({ error: `Unsupported file type '${file.type}'` }, 400);
 	}
+	const chunks = chunkText(data);
+
+	return c.json({ text: chunks });
+
+	/*
+	 * TODO: Function Flow
+	 * Indetify File Type -> Parse -> Chunk -> Return
+	 * If the file type is unsupported, return an error.
+	 */
 });
 
 export default Bun.serve({
