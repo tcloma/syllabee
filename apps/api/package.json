@@ -3,7 +3,8 @@
 	"module": "index.ts",
 	"type": "module",
 	"devDependencies": {
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"@types/pdf-parse": "^1.1.5"
 	},
 	"scripts": {
 		"dev": "bun run --watch index.ts"
@@ -12,8 +13,9 @@
 		"typescript": "^5"
 	},
 	"dependencies": {
-		"hono": "^4.8.2",
+		"@syllaby/core": "workspace:*",
 		"@syllaby/db": "workspace:*",
-		"@syllaby/core": "workspace:*"
+		"hono": "^4.8.2",
+		"pdf-parse": "^1.1.1"
 	}
 }
