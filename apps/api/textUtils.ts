@@ -38,7 +38,7 @@ export function chunkText(text: string): string[] {
 			currentChunk = paragraph;
 			currentTokens = tokens.length;
 		} else {
-			currentChunk += "\n\n" + paragraph;
+			currentChunk += `\n\n${paragraph}`;
 			currentTokens += tokens.length;
 		}
 	}
