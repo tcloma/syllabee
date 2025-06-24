@@ -15,6 +15,7 @@
     "apps/api": {
       "name": "api",
       "dependencies": {
+        "@syllaby/core": "workspace:*",
         "@syllaby/db": "workspace:*",
         "hono": "^4.8.2",
       },

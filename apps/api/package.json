@@ -14,6 +14,6 @@
 	"dependencies": {
 		"hono": "^4.8.2",
 		"@syllaby/db": "workspace:*",
-		"@sylalby/core": "workspace:*"
+		"@syllaby/core": "workspace:*"
 	}
 }

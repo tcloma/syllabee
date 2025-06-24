@@ -1,4 +1,4 @@
-import { talk } from "@syllab/core";
+import { talk } from "@syllaby/core";
 import { Hono } from "hono";
 
 const app = new Hono();
@@ -8,9 +8,13 @@ app.get("/", (c) => {
 });
 
 app.get("/talk", async (c) => {
-	const message = c.req.query("message")!;
-	const response = await talk(message);
-	return c.json(response);
+	const message = c.req.query("message");
+	if (!message) {
+		return c.json({ error: "Message query parameter is required" }, 400);
+	} else {
+		const res = await talk(message);
+		return c.json(res);
+	}
 });
 
 export default app;
