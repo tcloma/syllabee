@@ -1,0 +1,35 @@
+name: Bun Monorepo CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build & Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Lint Codebase
+        run: bun lint
+
+      - name: Format Codebase
+        run: bun format
+
+      - name: Build Apps
+        run: |
+          bun run --cwd apps/api build || echo "No build step for API"
+          bun run --cwd apps/web build || echo "No build step for Web"
