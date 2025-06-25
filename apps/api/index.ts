@@ -20,6 +20,10 @@ app.get("/talk", async (c) => {
 
 app.post("/upload", async (c) => {
 	let formData: { [x: string]: string | File };
+	/*
+	 * TODO: Multi File Upload
+	 * Currently, only single file upload is supported.
+	 */
 	try {
 		formData = await c.req.parseBody();
 	} catch {
