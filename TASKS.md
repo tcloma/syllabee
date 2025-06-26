@@ -1,6 +1,6 @@
 # ✅ Syllaby – MVP Sprint Task Breakdown
 
-**Sprint Duration:** June 21 – July 5, 2025  
+**Sprint Duration:** June 23 – July 7, 2025  
 **Goal:** Upload → Embed → Ask (Core RAG Flow)
 
 ---
@@ -25,6 +25,11 @@
   - [x] Accept PDF/DOCX
   - [x] Convert to text using `pdf-parse`, `mammoth`
   - [x] Chunk by page/section
+- [ ] Setup database
+  - [x] Define table schema for `users`, `classes`, `files`, and `chunks`
+  - [x] Extend drizzle with `float32array` data type for Turso vectors
+  - [x] Generate / push schema and run migrations
+  - [ ] Seed and Index Vectors
 - [ ] Generate embeddings:
   - [ ] Use `text-embedding-3-small` via OpenAI
   - [ ] Store vectors + metadata in Turso
