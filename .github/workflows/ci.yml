@@ -27,7 +27,7 @@ jobs:
         run: bun lint
 
       - name: Format Codebase
-        run: bun format
+        run: bun fmt
 
       - name: Build Apps
         run: |
