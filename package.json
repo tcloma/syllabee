@@ -9,8 +9,9 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint": "biome check .",
-		"format": "biome format . --write",
-		"test": "turbo run test"
+		"fmt": "biome format . --write",
+		"test": "turbo run test",
+		"prep": "bun fmt && bun lint"
 	},
 	"packageManager": "bun@1.2.0",
 	"devDependencies": {
