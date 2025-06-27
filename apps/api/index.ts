@@ -1,7 +1,8 @@
 import { talk } from "@syllaby/core";
 import { db } from "@syllaby/db";
 import { Hono } from "hono";
-import { chunkText, parseText } from "./textUtils";
+import { createHotServer } from "./utils/hotServer";
+import { chunkText, parseText } from "./utils/textUtils";
 
 const app = new Hono();
 
@@ -61,8 +62,10 @@ app.post("/upload", async (c) => {
 	 */
 });
 
-export default Bun.serve({
+export default createHotServer({
 	port: 5151,
 	fetch: app.fetch,
 	idleTimeout: 60,
 });
+
+console.log("🔥 API server is running at http://localhost:5151");
