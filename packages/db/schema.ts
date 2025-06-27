@@ -1,15 +1,21 @@
 import { createId as cuid } from "@paralleldrive/cuid2";
 import { sql } from "drizzle-orm";
-import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { float32Array } from "./vectorType";
+import {
+	boolean,
+	integer,
+	pgTable,
+	text,
+	uuid,
+	vector,
+} from "drizzle-orm/pg-core";
 
 const timestamps = {
 	updated_at: text().default(sql`CURRENT_TIMESTAMP`),
 	created_at: text().default(sql`CURRENT_TIMESTAMP`),
 };
 
-export const users = sqliteTable("users", {
-	id: text()
+export const users = pgTable("users", {
+	id: uuid()
 		.primaryKey()
 		.$defaultFn(() => cuid()),
 	name: text().notNull(),
@@ -17,8 +23,8 @@ export const users = sqliteTable("users", {
 	...timestamps,
 });
 
-export const classes = sqliteTable("classes", {
-	id: text()
+export const classes = pgTable("classes", {
+	id: uuid()
 		.primaryKey()
 		.$defaultFn(() => cuid()),
 	user_id: text()
@@ -26,12 +32,12 @@ export const classes = sqliteTable("classes", {
 		.references(() => users.id, { onDelete: "cascade" }),
 	name: text().notNull(),
 	semester: text().default(""),
-	archived: int({ mode: "boolean" }).default(false),
+	archived: boolean().default(false),
 	...timestamps,
 });
 
-export const files = sqliteTable("files", {
-	id: text()
+export const files = pgTable("files", {
+	id: uuid()
 		.primaryKey()
 		.$defaultFn(() => cuid()),
 	class_id: text()
@@ -39,12 +45,12 @@ export const files = sqliteTable("files", {
 		.references(() => classes.id, { onDelete: "cascade" }),
 	name: text().notNull(),
 	type: text().notNull(),
-	size: int().notNull(),
+	size: integer().notNull(),
 	...timestamps,
 });
 
-export const chunks = sqliteTable("chunks", {
-	id: text()
+export const chunks = pgTable("chunks", {
+	id: uuid()
 		.primaryKey()
 		.$defaultFn(() => cuid()),
 	file_id: text()
@@ -55,12 +61,10 @@ export const chunks = sqliteTable("chunks", {
 		.references(() => classes.id, { onDelete: "cascade" }),
 	text: text().notNull(),
 	/*
-	 * Turso Native Vectors
+	 * pgvector is used for storing embeddings
 	 * Assumes OpenAI text-embedding-3-small is used for embedding
 	 */
-	embedding: float32Array({
-		dimensions: 1536,
-	}).notNull(),
-	chunk_index: int().notNull(),
+	embedding: vector({ dimensions: 1536 }).notNull(),
+	chunk_index: integer().notNull(),
 	...timestamps,
 });

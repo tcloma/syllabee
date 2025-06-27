@@ -1,9 +1,12 @@
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import * as schema from "./schema";
 
-const client = createClient({
-	url: process.env.DB_URL as string,
-	authToken: process.env.DB_AUTH_TOKEN as string,
+console.log("Process Environment:", process.env.DATABASE_URL);
+const client = postgres(process.env.DATABASE_URL as string, {
+	prepare: false,
+	ssl: {
+		rejectUnauthorized: false, // For local development, set to true in production
+	},
 });
-
-export const db = drizzle({ client });
+export const db = drizzle({ client, schema });

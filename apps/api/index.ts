@@ -1,11 +1,19 @@
 import { talk } from "@syllaby/core";
+import { db } from "@syllaby/db";
 import { Hono } from "hono";
 import { chunkText, parseText } from "./textUtils";
 
 const app = new Hono();
 
 app.get("/", (c) => {
-	return c.text("Hello, World!");
+	console.log(process.env.DB_URL);
+	return c.json({ message: "Welcome to the Syllaby API!" });
+});
+
+app.get("/users", async (c) => {
+	const users = await db.query.users.findMany();
+	console.log("Users fetched:", users);
+	return c.json({ users });
 });
 
 app.get("/talk", async (c) => {
