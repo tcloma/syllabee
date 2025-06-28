@@ -1,14 +1,18 @@
-import { zValidator } from "@hono/zod-validator";
-import { db } from "@syllaby/db";
+import { zValidator as zv } from "@hono/zod-validator";
+import { db, eq } from "@syllaby/db";
 import { classes } from "@syllaby/db/schema";
 import { Hono } from "hono";
 import { z } from "zod";
 
 const app = new Hono();
 
-const classSchema = z.object({
+const formData = z.object({
 	user_id: z.string().uuid(),
 	name: z.string(),
+});
+
+const deleteParams = z.object({
+	id: z.string().uuid(),
 });
 
 app.get("/", async (c) => {
@@ -17,8 +21,8 @@ app.get("/", async (c) => {
 	return c.json({ classes });
 });
 
-app.post("/", zValidator("form", classSchema), async (c) => {
-	const body = await c.req.valid("form");
+app.post("/", zv("form", formData), async (c) => {
+	const body = c.req.valid("form");
 	const { user_id, name } = body;
 
 	const created_class = await db
@@ -30,6 +34,19 @@ app.post("/", zValidator("form", classSchema), async (c) => {
 		.returning();
 
 	return c.json({ "Class created!": created_class });
+});
+
+app.delete("/:id", zv("param", deleteParams), async (c) => {
+	const id = c.req.param("id");
+	console.log("Deleting class with ID:", id);
+
+	const deleted_class = await db
+		.delete(classes)
+		.where(eq(classes.id, id))
+		.returning();
+
+	console.log("Class deleted:", deleted_class);
+	return c.json({ "Class deleted!": deleted_class });
 });
 
 export default app;
