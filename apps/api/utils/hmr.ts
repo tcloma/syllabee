@@ -20,5 +20,6 @@ export function createHotServer(handler: Handler) {
 		});
 	} else {
 		g[HMR_KEY] = Bun.serve(handler);
+		console.log(`🚀✨ Syllaby API Server is live!\n\n🌐 URL:        http://localhost:${g[HMR_KEY].port}\n📡 Status:     Listening for incoming requests...\n🧠 Mode:       Development (HMR Enabled)`);
 	}
 }
