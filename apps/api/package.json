@@ -13,11 +13,13 @@
 		"typescript": "^5"
 	},
 	"dependencies": {
+		"@hono/zod-validator": "^0.7.0",
 		"@syllaby/core": "workspace:*",
 		"@syllaby/db": "workspace:*",
 		"hono": "^4.8.2",
 		"mammoth": "^1.9.1",
 		"pdf-parse": "^1.1.1",
-		"tiktoken": "^1.0.21"
+		"tiktoken": "^1.0.21",
+		"zod": "^3.25.67"
 	}
 }
