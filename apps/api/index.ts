@@ -1,4 +1,4 @@
-import { talk } from "@syllaby/core";
+import { embed, talk } from "@syllaby/core";
 import { db } from "@syllaby/db";
 import { Hono } from "hono";
 import { createHotServer } from "./utils/hotServer";
@@ -9,6 +9,18 @@ const app = new Hono();
 app.get("/", (c) => {
 	console.log(process.env.DB_URL);
 	return c.json({ message: "Welcome to the Syllaby API!" });
+});
+
+app.get("/users", async (c) => {
+	const users = await db.query.users.findMany();
+	console.log("Users fetched:", users);
+	return c.json({ users });
+});
+
+app.get("/classes", async (c) => {
+	const classes = await db.query.classes.findMany();
+	console.log("Users fetched:", classes);
+	return c.json({ classes });
 });
 
 app.get("/users", async (c) => {
@@ -45,15 +57,20 @@ app.post("/upload", async (c) => {
 	}
 
 	const file = formData.file as File;
-	console.log("File data received:", file);
+	console.log("File data received:", file.type);
 
 	const data = await parseText(file);
 	if (data === "") {
 		return c.json({ error: `Unsupported file type '${file.type}'` }, 400);
 	}
 	const chunks = chunkText(data);
+	const embeddings = await embed(chunks);
+	/* TODO:
+	 * Save chunks and embeddings to the database
+	 * This is a placeholder for the actual database save operation.
+	 */
 
-	return c.json({ text: chunks });
+	return c.json({ chunks, embeddings });
 
 	/*
 	 * TODO: Function Flow

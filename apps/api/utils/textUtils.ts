@@ -42,6 +42,6 @@ export function chunkText(text: string): string[] {
 			currentTokens += tokens.length;
 		}
 	}
-	chunks.push(currentChunk);
+	chunks.push(currentChunk.trim());
 	return chunks;
 }

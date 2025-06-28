@@ -11,3 +11,12 @@ export async function talk(input: string) {
 	});
 	return res.output_text;
 }
+
+export async function embed(chunks: string[]) {
+	const res = await client.embeddings.create({
+		model: "text-embedding-3-small",
+		input: chunks,
+		encoding_format: "float",
+	});
+	return res;
+}

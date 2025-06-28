@@ -12,7 +12,7 @@
 - [x] Create packages: `core`, `types`, `ui`
 - [x] Set up `.env` with `OPENAI_API_KEY`, `TURSO_DATABASE_URL`
 - [x] Install dependencies:
-  - Bun, Hono, Turso, Drizzle
+  - Bun, Hono, Supabase, Drizzle
   - SvelteKit, TailwindCSS, shadcn/ui
   - pdf-parse, mammoth
 - [x] Optional: Add GitHub repo + CI (e.g., GitHub Actions)
@@ -25,14 +25,14 @@
   - [x] Accept PDF/DOCX
   - [x] Convert to text using `pdf-parse`, `mammoth`
   - [x] Chunk by page/section
-- [ ] Setup database
+- [x] Setup database
   - [x] Define table schema for `users`, `classes`, `files`, and `chunks`
   - [x] Extend drizzle with `float32array` data type for Turso vectors
   - [x] Generate / push schema and run migrations
   - [ ] Seed and Index Vectors
 - [ ] Generate embeddings:
   - [ ] Use `text-embedding-3-small` via OpenAI
-  - [ ] Store vectors + metadata in Turso
+  - [ ] Store vectors + metadata in Supabase
 - [ ] Create `/ask` API:
   - [ ] Vector search (top-k relevant chunks)
   - [ ] Inject into GPT prompt
