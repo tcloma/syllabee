@@ -1,6 +1,24 @@
+import { embed } from "@syllaby/core";
 import mammoth from "mammoth";
 import PDF from "pdf-parse";
 import { encoding_for_model } from "tiktoken";
+
+export function isValidFileType(fileType: string): boolean {
+	return (
+		fileType.includes("pdf") ||
+		fileType.includes("word") ||
+		fileType.includes("text/plain") ||
+		fileType.includes("text/markdown")
+	);
+}
+
+export async function parseChunkEmbed(file: File) {
+	const text = await parseText(file);
+	const text_chunks = chunkText(text);
+	const embeddings = await embed(text_chunks);
+
+	return { text, text_chunks, embeddings: embeddings.data };
+}
 
 export async function parseText(file: File): Promise<string> {
 	const buffer = Buffer.from(await file.arrayBuffer());
@@ -45,13 +63,4 @@ export function chunkText(text: string): string[] {
 	}
 	chunks.push(currentChunk.trim());
 	return chunks;
-}
-
-export function isValidFileType(fileType: string): boolean {
-	return (
-		fileType.includes("pdf") ||
-		fileType.includes("word") ||
-		fileType.includes("text/plain") ||
-		fileType.includes("text/markdown")
-	);
 }
