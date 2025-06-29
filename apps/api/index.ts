@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { ai, classes, upload, users } from "./routes/_routemap";
+import { ai, classes, users } from "./routes/_routemap";
 import { createHotServer } from "./utils/hmr";
 
 const app = new Hono();
@@ -10,7 +10,6 @@ app.get("/", (c) => {
 
 app.route("/ai", ai);
 app.route("/classes", classes);
-app.route("/upload", upload);
 app.route("/users", users);
 
 export default createHotServer({

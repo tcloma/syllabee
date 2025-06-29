@@ -3,20 +3,21 @@ import PDF from "pdf-parse";
 import { encoding_for_model } from "tiktoken";
 
 export async function parseText(file: File): Promise<string> {
+	const buffer = Buffer.from(await file.arrayBuffer());
+
 	switch (true) {
 		case file.type.includes("pdf"): {
-			const data = await PDF(Buffer.from(await file.arrayBuffer()));
+			const data = await PDF(buffer);
 			return data.text;
 		}
 		case file.type.includes("word"): {
 			const data = await mammoth.extractRawText({
-				buffer: Buffer.from(await file.arrayBuffer()),
+				buffer,
 			});
 			return data.value;
 		}
-		case file.type.includes("text/plain"):
-			return await file.text();
-		case file.type.includes("text/markdown"):
+		case file.type.includes("text/plain") ||
+			file.type.includes("text/markdown"):
 			return await file.text();
 		default:
 			return "";
@@ -44,4 +45,13 @@ export function chunkText(text: string): string[] {
 	}
 	chunks.push(currentChunk.trim());
 	return chunks;
+}
+
+export function isValidFileType(fileType: string): boolean {
+	return (
+		fileType.includes("pdf") ||
+		fileType.includes("word") ||
+		fileType.includes("text/plain") ||
+		fileType.includes("text/markdown")
+	);
 }
