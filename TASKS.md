@@ -29,10 +29,10 @@
   - [x] Define table schema for `users`, `classes`, `files`, and `chunks`
   - [x] Extend drizzle with `float32array` data type for Turso vectors
   - [x] Generate / push schema and run migrations
-  - [ ] Seed and Index Vectors
-- [ ] Generate embeddings:
-  - [ ] Use `text-embedding-3-small` via OpenAI
-  - [ ] Store vectors + metadata in Supabase
+  - [x] Seed and Index Vectors
+- [x] Generate embeddings:
+  - [x] Use `text-embedding-3-small` via OpenAI
+  - [x] Store vectors + metadata in Supabase
 - [ ] Create `/ask` API:
   - [ ] Vector search (top-k relevant chunks)
   - [ ] Inject into GPT prompt
