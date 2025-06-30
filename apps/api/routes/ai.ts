@@ -1,5 +1,5 @@
 import { zValidator as zv } from "@hono/zod-validator";
-import { embed } from "@syllaby/core";
+import { ask, embed } from "@syllaby/core";
 import { getTopKChunks } from "@syllaby/db/getTopKChunks";
 import { Hono } from "hono";
 import { chunkText } from "../utils/textUtils";
@@ -31,13 +31,15 @@ app.post(
 			return c.json({ error: "Failed to generate embeddings" }, 500);
 		}
 
-		console.log(embeddings);
-
 		const top3chunks = await getTopKChunks(embeddings, 3, class_id);
+		const context = top3chunks.map((c) => c.text).join("\n---\n");
+
+		const question_response = await ask(context, message);
+
+		console.log(question_response);
 
 		return c.json({
-			message: "Embeddings generated successfully",
-			embeddings: top3chunks,
+			question_response,
 		});
 	},
 );
