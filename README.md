@@ -1,4 +1,4 @@
-# 🐝 Syllabee
+# 🌼🐝 Syllabee
 > _A Context-Aware, AI-Powered Study Companion for Students_
 
 ## 🌱 Vision
