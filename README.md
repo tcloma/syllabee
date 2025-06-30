@@ -77,9 +77,9 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - [x] Generate embeddings:
   - [x] Use `text-embedding-3-small` via OpenAI
   - [x] Store vectors + metadata in Supabase
-- [ ] Create `/ask` API:
-  - [ ] Vector search (top-k relevant chunks)
-  - [ ] Inject into GPT prompt
+- [x] Create `/ask` API:
+  - [x] Vector search (top-k relevant chunks)
+  - [x] Inject into GPT prompt
   - [ ] Return streamed answer
 - [ ] Add Redis or LRU cache for embeddings (optional)
 
