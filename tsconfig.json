@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
 		"paths": {
-			"@syllaby/db": ["./packages/db/client"],
-			"@syllaby/core": ["./packages/core/llm.ts"]
+			"@syllaby/db": ["./packages/db/"],
+			"@syllaby/core": ["./packages/core/"]
 		},
 		// Environment setup & latest features
 		"lib": ["ESNext"],
