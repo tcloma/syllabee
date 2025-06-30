@@ -50,7 +50,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 > _“Upload → Ask → Understand.” Let’s build the classmate you wish you had._
 
 
-## 📦 Phase 0: Monorepo Setup (Day 0–2)
+## 🌱 Phase 0: Monorepo Setup (Day 0–2)
 
 - [x] Initialize monorepo with Bun: `bun init`, `package.json`, `tsconfig.json`
 - [x] Create folders: `apps/api`, `apps/web`, `apps/extension` (stubbed)
@@ -63,7 +63,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - [x] Optional: Add GitHub repo + CI (e.g., GitHub Actions)
 
 
-## 🔌 Phase 1: Core Backend (Day 3–6)
+## 🥀 Phase 1: Core Backend (Day 3–6)
 
 - [x] Create `/upload` API:
   - [x] Accept PDF, DOCX, TXT, MD
@@ -83,7 +83,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
   - [ ] Return streamed answer
 - [ ] Add Redis or LRU cache for embeddings (optional)
 
-## 🧑‍🎓 Phase 2: Frontend MVP (Day 7–11)
+## 🌹 Phase 2: Frontend MVP (Day 7–11)
 
 - [ ] Build base SvelteKit app layout
 - [ ] File Upload UI:
@@ -97,7 +97,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - [ ] Add dropdown for selecting class/file context
 - [ ] Toasts or modals for error/success feedback
 
-## 🧪 Phase 3: UX Polish + QA (Day 12–14)
+## 🌷 Phase 3: UX Polish + QA (Day 12–14)
 
 - [ ] Add summary preview of vectorized chunks
 - [ ] Handle errors:
@@ -108,7 +108,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - [ ] Add sample syllabus PDF for demo/testing
 - [ ] Prepare early access tester instructions
 
-## 🧠 MVP Validation Checklist
+## 🌸 MVP Validation Checklist
 
 - [ ] Upload works for PDF and DOCX
 - [ ] Embeddings are stored and retrievable
@@ -117,7 +117,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - [ ] Responses persist across sessions (Turso-backed)
 - [ ] Demo file included with meaningful answers
 
-## 📌 Stretch Goals (Optional)
+## 💐 Stretch Goals (Optional)
 
 - [ ] “Quiz Me” button to generate 3 MCQs per file
 - [ ] Save chat history locally
