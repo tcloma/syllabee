@@ -7,14 +7,15 @@ const client = new OpenAI({
 
 export async function ask(context: string, message: string) {
 	const res = await client.responses.create({
-		model: "gpt-4.1",
+		model: "gpt-4.1-mini",
 
 		input: [
 			{ role: "system", content: getSystemContext() },
 			{ role: "user", content: getUserContext(context, message) },
 		],
+		stream: true
 	});
-	return res.output_text;
+	return res;
 }
 
 export async function embed(chunks: string[]) {

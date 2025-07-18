@@ -10,7 +10,7 @@ const app = new Hono();
 app.get("/ask", (c) => {
 	return c.json({
 		message: "Ask route is working",
-	});
+	});	
 });
 
 app.post(
@@ -34,7 +34,26 @@ app.post(
 		const top3chunks = await getTopKChunks(embeddings, 3, class_id);
 		const context = top3chunks.map((c) => c.text).join("\n---\n");
 
-		const question_response = await ask(context, message);
+		let question_response = "";
+		const stream = await ask(context, message);
+
+		for await (const event of stream) {
+			switch (event.type) {
+				case "response.created":
+					console.log("Stream response created");
+					break;
+				case "response.completed":
+					console.log("Stream response completed");
+					break;
+				case "response.output_text.delta":
+					console.log(event.sequence_number, event.delta);
+					question_response += event.delta;
+					break;
+				default:
+					console.log("Unknown event type:", event.type);
+					console.log(event);
+			}
+		}
 
 		console.log(question_response);
 
