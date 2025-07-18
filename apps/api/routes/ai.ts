@@ -1,6 +1,6 @@
 import { zValidator as zv } from "@hono/zod-validator";
-import { ask, embed } from "@syllaby/core";
-import { getTopKChunks } from "@syllaby/db/getTopKChunks";
+import { ask, embed } from "@syllabee/core";
+import { getTopKChunks } from "@syllabee/db/getTopKChunks";
 import { Hono } from "hono";
 import { chunkText } from "../utils/textUtils";
 import { askBody, askParam } from "../utils/zodTypes";

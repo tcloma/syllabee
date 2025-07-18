@@ -1,4 +1,4 @@
-import { embed } from "@syllaby/core";
+import { embed } from "@syllabee/core";
 import mammoth from "mammoth";
 import PDF from "pdf-parse";
 import { encoding_for_model } from "tiktoken";

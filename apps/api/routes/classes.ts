@@ -1,6 +1,6 @@
 import { zValidator as zv } from "@hono/zod-validator";
-import { db, eq } from "@syllaby/db";
-import { classes } from "@syllaby/db/schema";
+import { db, eq } from "@syllabee/db";
+import { classes } from "@syllabee/db/schema";
 import { Hono } from "hono";
 import { processUpload } from "../utils/processUpload";
 import { isValidFileType } from "../utils/textUtils";

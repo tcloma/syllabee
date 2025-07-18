@@ -1,5 +1,5 @@
-import { db } from "@syllaby/db";
-import { chunks, files } from "@syllaby/db/schema";
+import { db } from "@syllabee/db";
+import { chunks, files } from "@syllabee/db/schema";
 import { parseChunkEmbed } from "./textUtils";
 
 export async function processUpload(file: File, class_id: string) {

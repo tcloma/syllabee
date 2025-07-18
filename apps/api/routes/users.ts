@@ -1,4 +1,4 @@
-import { db } from "@syllaby/db";
+import { db } from "@syllabee/db";
 import { Hono } from "hono";
 
 const app = new Hono();

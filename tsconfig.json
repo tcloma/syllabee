@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
 		"paths": {
-			"@syllaby/db": ["./packages/db/"],
-			"@syllaby/core": ["./packages/core/"]
+			"@syllabee/db": ["packages/db/"],
+			"@syllabee/core": ["packages/core/"]
 		},
 		// Environment setup & latest features
 		"lib": ["ESNext"],

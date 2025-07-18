@@ -1,5 +1,5 @@
 {
-	"name": "@syllabi",
+	"name": "syllabee",
 	"type": "module",
 	"workspaces": [
 		"packages/*",

@@ -1,6 +1,6 @@
-import { db } from "@syllaby/db";
-import { chunks } from "@syllaby/db/schema";
 import { sql } from "drizzle-orm";
+import { db } from "./client";
+import { chunks } from "./schema";
 
 function embeddingArrayToSqlVector(vector: number[]) {
 	return `ARRAY[${vector.join(",")}]::vector`;

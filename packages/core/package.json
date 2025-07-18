@@ -1,5 +1,5 @@
 {
-	"name": "@syllaby/core",
+	"name": "@syllabee/core",
 	"main": "llm.ts",
 	"devDependencies": {
 		"@types/bun": "latest"
