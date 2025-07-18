@@ -10,7 +10,7 @@ const app = new Hono();
 app.get("/ask", (c) => {
 	return c.json({
 		message: "Ask route is working",
-	});	
+	});
 });
 
 app.post(

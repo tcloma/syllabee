@@ -13,7 +13,7 @@ export async function ask(context: string, message: string) {
 			{ role: "system", content: getSystemContext() },
 			{ role: "user", content: getUserContext(context, message) },
 		],
-		stream: true
+		stream: true,
 	});
 	return res;
 }
