@@ -13,7 +13,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - Time-consuming to use effectively
 - Poorly integrated with real academic workflows
 
-**Syllaby solves this** by turning class materials into dynamic, interactive study companions — using AI to understand the content and help students retain and apply knowledge better.
+**Syllabee solves this** by turning class materials into dynamic, interactive study companions — using AI to understand the content and help students retain and apply knowledge better.
 
 ## 🌻 MVP Core Features
 
@@ -39,7 +39,6 @@ Students are drowning in disorganized information spread across LMS platforms, n
 ---
 #  Syllabee – MVP Sprint Task Breakdown
 
-**Sprint Duration:** June 23 – July 7, 2025  
 **Goal:** Upload → Embed → Ask (Core RAG Flow)
 
 
@@ -80,7 +79,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 - [x] Create `/ask` API:
   - [x] Vector search (top-k relevant chunks)
   - [x] Inject into GPT prompt
-  - [ ] Return streamed answer
+  - [x] Return streamed answer
 - [ ] Add Redis or LRU cache for embeddings (optional)
 
 ## 🌹 Phase 2: Frontend MVP (Day 7–11)
@@ -101,6 +100,7 @@ Students are drowning in disorganized information spread across LMS platforms, n
 
 - [ ] Add summary preview of vectorized chunks
 - [ ] Handle errors:
+  - [ ] Integrate `neverthrow`
   - [ ] Upload failure
   - [ ] LLM timeout
 - [ ] Prevent duplicate embeddings:
