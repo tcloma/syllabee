@@ -1,9 +1,7 @@
 {
 	"name": "@syllabee/core",
 	"main": "llm.ts",
-	"devDependencies": {
-		"@types/bun": "latest"
-	},
+	"devDependencies": {},
 	"peerDependencies": {
 		"typescript": "^5"
 	},
