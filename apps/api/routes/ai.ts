@@ -8,7 +8,12 @@ import { askBody, askParam } from "../utils/zodTypes";
 
 const app = new Hono();
 
-// Hono route
+/*
+ * POST /ask/:class_id
+ * This route takes a user query, processes it through a RAG pipeline,
+ * and returns a context aware LLM response.
+ */
+
 app.post(
 	"/ask/:class_id",
 	zv("form", askBody),
