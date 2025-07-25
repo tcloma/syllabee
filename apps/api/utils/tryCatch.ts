@@ -9,7 +9,7 @@ type Failure<E> = {
 	error: E;
 };
 
-type Result<T, E = Error> = Success<T> | Failure<E>;
+export type Result<T, E = Error> = Success<T> | Failure<E>;
 
 // Async try/catch wrapper
 export async function tryCatch<T, E = Error>(
@@ -34,6 +34,8 @@ export function tryCatchSync<T, E = Error>(callback: () => T): Result<T, E> {
 }
 
 export enum ErrorCode {
+	FILE_PARSING_FAILED = "FILE_PARSING_FAILED",
+
 	INVALID_INPUT = "INVALID_INPUT",
 
 	// Chunking

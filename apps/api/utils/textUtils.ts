@@ -1,44 +1,28 @@
-import { embed } from "@syllabee/core";
-import mammoth from "mammoth";
-import PDF from "pdf-parse";
+import { err, type Result, ResultAsync } from "neverthrow";
 import { encoding_for_model } from "tiktoken";
+import { parsePdf, parseTextorMD, parseWord } from "./parsers";
 
-export function isValidFileType(fileType: string): boolean {
-	return (
-		fileType.includes("pdf") ||
-		fileType.includes("word") ||
-		fileType.includes("text/plain") ||
-		fileType.includes("text/markdown")
-	);
-}
-
-export async function parseChunkEmbed(file: File) {
-	const text = await parseText(file);
-	const text_chunks = chunkText(text);
-	const embeddings = await embed(text_chunks);
-
-	return { text, text_chunks, embeddings: embeddings.data };
-}
-
-export async function parseText(file: File): Promise<string> {
-	const buffer = Buffer.from(await file.arrayBuffer());
-
-	switch (true) {
-		case file.type.includes("pdf"): {
-			const data = await PDF(buffer);
-			return data.text;
-		}
-		case file.type.includes("word"): {
-			const data = await mammoth.extractRawText({
-				buffer,
-			});
-			return data.value;
-		}
-		case file.type.includes("text/plain") ||
-			file.type.includes("text/markdown"):
-			return await file.text();
-		default:
-			return "";
+export async function parseText(file: File): Promise<Result<string, Error>> {
+	if (file.type.includes("pdf")) {
+		return ResultAsync.fromPromise(
+			parsePdf(file),
+			() => new Error("Failed to parse PDF document"),
+		);
+	} else if (file.type.includes("word")) {
+		return ResultAsync.fromPromise(
+			parseWord(file),
+			() => new Error("Failed to parse Word document"),
+		);
+	} else if (
+		file.type.includes("text/plain") ||
+		file.type.includes("text/markdown")
+	) {
+		return ResultAsync.fromPromise(
+			parseTextorMD(file),
+			() => new Error("Failed to parse text file"),
+		);
+	} else {
+		return err(new Error("Unsupported file type"));
 	}
 }
 

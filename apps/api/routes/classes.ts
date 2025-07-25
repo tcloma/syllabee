@@ -3,7 +3,6 @@ import { db, eq } from "@syllabee/db";
 import { classes } from "@syllabee/db/schema";
 import { Hono } from "hono";
 import { processUpload } from "../utils/processUpload";
-import { isValidFileType } from "../utils/textUtils";
 import { classIdParam, formData, uploadBody } from "../utils/zodTypes";
 
 const app = new Hono();
@@ -48,26 +47,27 @@ app.post(
 		const { file } = c.req.valid("form");
 
 		if (!Array.isArray(file)) {
-			if (!isValidFileType(file.type)) {
-				return c.json({ error: `Unsupported file type '${file.type}'` }, 400);
-			}
-
 			const uploaded_file = await processUpload(file, class_id);
+			if (uploaded_file.isErr()) {
+				console.error("Error processing file:", uploaded_file.error);
+				return c.json({ error: "Failed to process file" }, 500);
+			}
 
 			return c.json({
 				message: "File parsed and chunks uploaded successfully",
-				file: uploaded_file,
+				file: uploaded_file.value,
 			});
 		} else {
 			const uploaded_files = [];
 
 			for (const f of file) {
-				if (!isValidFileType(f.type)) {
-					return c.json({ error: `Unsupported file type '${f.type}'` }, 400);
+				const uploaded_file = await processUpload(f, class_id);
+				if (uploaded_file.isErr()) {
+					console.error("Error processing file:", uploaded_file.error);
+					return c.json({ error: "Failed to process file" }, 500);
 				}
 
-				const uploaded_file = await processUpload(f, class_id);
-				uploaded_files.push(uploaded_file);
+				uploaded_files.push(uploaded_file.value);
 			}
 
 			return c.json({
