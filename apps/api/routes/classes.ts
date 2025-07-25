@@ -47,27 +47,27 @@ app.post(
 		const { file } = c.req.valid("form");
 
 		if (!Array.isArray(file)) {
-			const uploaded_file = await processUpload(file, class_id);
-			if (uploaded_file.isErr()) {
-				console.error("Error processing file:", uploaded_file.error);
+			const uploadResult = await processUpload(file, class_id);
+			if (uploadResult.isErr()) {
+				console.error("Error processing file:", uploadResult.error);
 				return c.json({ error: "Failed to process file" }, 500);
 			}
 
 			return c.json({
 				message: "File parsed and chunks uploaded successfully",
-				file: uploaded_file.value,
+				file: uploadResult.value,
 			});
 		} else {
 			const uploaded_files = [];
 
 			for (const f of file) {
-				const uploaded_file = await processUpload(f, class_id);
-				if (uploaded_file.isErr()) {
-					console.error("Error processing file:", uploaded_file.error);
+				const uploadResult = await processUpload(f, class_id);
+				if (uploadResult.isErr()) {
+					console.error("Error processing file:", uploadResult.error);
 					return c.json({ error: "Failed to process file" }, 500);
 				}
 
-				uploaded_files.push(uploaded_file.value);
+				uploaded_files.push(uploadResult.value);
 			}
 
 			return c.json({

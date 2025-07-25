@@ -2,7 +2,9 @@ import { err, type Result, ResultAsync } from "neverthrow";
 import { encoding_for_model } from "tiktoken";
 import { parsePdf, parseTextorMD, parseWord } from "./parsers";
 
-export async function parseText(file: File): Promise<Result<string, Error>> {
+export async function validateAndParseText(
+	file: File,
+): Promise<Result<string, Error>> {
 	if (file.type.includes("pdf")) {
 		return ResultAsync.fromPromise(
 			parsePdf(file),
