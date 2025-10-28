@@ -42,13 +42,6 @@ Students are drowning in disorganized information spread across LMS platforms, n
 **Goal:** Upload → Embed → Ask (Core RAG Flow)
 
 
-**Total Tasks:** ~40  
-**Daily Target:** ~3–4 tasks/day  
-**Focus:** Fast value delivery with minimal scope creep
-
-> _“Upload → Ask → Understand.” Let’s build the classmate you wish you had._
-
-
 ---
 > # 🌻   ᜓ  ᜒ  𖬰  ˖  ﾟ ˖  ﾟ ˖  ﾟ ・  ᠂  🐝  ᠂   ・    ᜓ  ᜒ  𖬰  ˖  ﾟ ˖  ﾟ ˖  ﾟ˖ 𖬰  ᜒ  ᜓ  🍯
 ---
